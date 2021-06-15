@@ -53,8 +53,6 @@ then
 	sudo $cm1 -y update
 	sudo $cm1 -y upgrade
 	sudo $cm1 -y install gcc make wget libffi-dev 
-        zlibadd
-	sslupdate $cm1 
         count=1
         fi
 
