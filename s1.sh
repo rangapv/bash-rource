@@ -38,6 +38,9 @@ then
    	cm1="apt-get"
         cm11="add-apt-repository"
    	cm2="apt-key"
+        sudo $cm1 -y update
+	sudo $cm1 -y upgrade
+	sudo $cm1 -y install git
 	count=1
 	fi
 elif [ ! -z "$d1" ]
