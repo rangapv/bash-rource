@@ -7,7 +7,7 @@ ks() {
 	if [ ! -d "$HOME/ks" ]
 	then
 	mkdir ~/ks
-	`git init ~/ks/`
+	git init ~/ks/ 2>&1 > /dev/null
 	fi
 	`cd ~/ks;git pull -q https://github.com/rangapv/kubestatus.git`
 
@@ -18,7 +18,7 @@ meta() {
 	if [ ! -d "$HOME/meta" ]
 	then
 	mkdir ~/meta
-	`git init ~/meta/`
+	git init ~/meta/ 2>&1 > /dev/null
 	fi
 	`cd ~/meta;git pull -q https://github.com/rangapv/metascript.git`
 
@@ -29,7 +29,7 @@ k8s() {
 	if [ ! -d "$HOME/k8s" ]
 	then
 	mkdir ~/k8s;
-	`git init ~/k8s/`
+	git init ~/k8s/ 2>&1 > /dev/null
 	fi
         `cd ~/k8s;git pull -q https://github.com/rangapv/k8s.git` 
 
