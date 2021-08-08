@@ -2,38 +2,36 @@
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) 2>&1 > /dev/null
 
-ks() {
+declare -A array
 
-	if [ ! -d "$HOME/ks" ]
-	then
-	mkdir ~/ks
-	git init ~/ks/ 2>&1 > /dev/null
-	fi
-	`cd ~/ks;git pull -q https://github.com/rangapv/kubestatus.git`
+github() {
+arg1="$@"
 
+for k in ${arg1[@]}
+do
+ if [[ ! -d "$HOME/$k" ]]
+ then
+    mkdir ~/$k;cd ~/$k
+    git init ~/ks/ 2>&1 > /dev/null
+    git pull -q "${array[$k]}" 
+ else
+    cd ~/$k
+    if [[ ! `git rev-parse --is-inside-work-tree` ]]
+    then
+      git init
+    fi
+      git pull -q "${array[$k]}" 
+ fi
+done
 }
 
-meta() {
- 
-	if [ ! -d "$HOME/meta" ]
-	then
-	mkdir ~/meta
-	git init ~/meta/ 2>&1 > /dev/null
-	fi
-	`cd ~/meta;git pull -q https://github.com/rangapv/metascript.git`
 
-}
+array[ks]=https://github.com/rangapv/kubestatus.git
+array[meta]=https://github.com/rangapv/metascript.git
+array[k8s]=https://github.com/rangapv/k8s.git
 
-k8s() {
+arrayb=( ks meta k8s )
 
-	if [ ! -d "$HOME/k8s" ]
-	then
-	mkdir ~/k8s;
-	git init ~/k8s/ 2>&1 > /dev/null
-	fi
-        `cd ~/k8s;git pull -q https://github.com/rangapv/k8s.git` 
-
-}
 
 gs=`which git`
 gst="$?"
@@ -43,6 +41,6 @@ then
 	sudo $cm1 -y install git
 fi
 
-ks
-meta
-k8s
+
+github "${arrayb[@]}"
+
