@@ -12,7 +12,7 @@ do
  if [[ ! -d "$HOME/$k" ]]
  then
     mkdir ~/$k;cd ~/$k
-    git init ~/ks/ 2>&1 > /dev/null
+    git init ~/$k/ 2>&1 > /dev/null
     git pull -q "${array[$k]}" 
  else
     cd ~/$k
@@ -26,9 +26,9 @@ done
 }
 
 
-array[ks]=https://github.com/rangapv/kubestatus.git
-array[meta]=https://github.com/rangapv/metascript.git
-array[k8s]=https://github.com/rangapv/k8s.git
+array[ks]="https://github.com/rangapv/kubestatus.git"
+array[meta]="https://github.com/rangapv/metascript.git"
+array[k8s]="https://github.com/rangapv/k8s.git"
 
 arrayb=( ks meta k8s )
 
