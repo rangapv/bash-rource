@@ -14,7 +14,7 @@ do
     mkdir ~/$k
  fi
  cd ~/$k
- if [[ ! `git rev-parse --is-inside-work-tree` ]]
+ if [[ ! `git rev-parse --is-inside-work-tree >>/dev/null 2>&1` ]]
  then
     git init 2>&1 > /dev/null
  fi
