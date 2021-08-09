@@ -11,17 +11,14 @@ for k in ${arg1[@]}
 do
  if [[ ! -d "$HOME/$k" ]]
  then
-    mkdir ~/$k;cd ~/$k
-    git init ~/$k/ 2>&1 > /dev/null
-    git pull -q "${array[$k]}" 
- else
-    cd ~/$k
-    if [[ ! `git rev-parse --is-inside-work-tree` ]]
-    then
-      git init
-    fi
-      git pull -q "${array[$k]}" 
+    mkdir ~/$k
  fi
+ cd ~/$k
+ if [[ ! `git rev-parse --is-inside-work-tree` ]]
+ then
+    git init 2>&1 > /dev/null
+ fi
+  git pull -q "${array[$k]}" 
 done
 }
 
@@ -29,9 +26,14 @@ done
 array[ks]="https://github.com/rangapv/kubestatus.git"
 array[meta]="https://github.com/rangapv/metascript.git"
 array[k8s]="https://github.com/rangapv/k8s.git"
+array[eBPF]="https://github.com/rangapv/eBPF.git"
+array[bs]="https://github.com/rangapv/bash-source.git"
+array[py]="https://github.com/rangapv/pyUpgrade.git"
+array[ans]="https://github.com/rangapv/ansible-install.git"
+array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
+array[runt]="https://github.com/rangapv/runtimes.git"
 
 arrayb=( ks meta k8s )
-
 
 gs=`which git`
 gst="$?"
@@ -40,7 +42,6 @@ if [[ $gst -ne 0 ]]
 then
 	sudo $cm1 -y install git
 fi
-
 
 github "${arrayb[@]}"
 
