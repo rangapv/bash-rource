@@ -14,9 +14,10 @@ do
     mkdir ~/$k
  fi
  cd ~/$k
- if [[ ! `git rev-parse --is-inside-work-tree >>/dev/null 2>&1` ]]
+ `git rev-parse --is-inside-work-tree >>/dev/null 2>&1`
+ if [[ ! ( "$?" -eq 0 ) ]]
  then
-    git init 2>&1 > /dev/null
+    `git init >>/dev/null 2>&1`
  fi
   git pull -q "${array[$k]}" 
 done
