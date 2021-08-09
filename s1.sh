@@ -77,6 +77,7 @@ then
         if [ $ki = "sles" ]
         then
         echo " it is SUSE"
+        cm1="zypper"
         sudo zypper install -y gcc make openssl-devel libffi-devel zlib-devel wget lsb-release
 	count=1
         fi
@@ -87,13 +88,13 @@ then
         if [ $ki = "flatcar" ]
         then
           echo "It is Flat Car Linux"
-        fi
 	count=0
-
+        fi
 elif [[ ! -z "$c1" || ! -z "$r1" || ! -z "$a1" ]]
 then
         ji=$(cat /etc/*-release | grep '^ID=' |awk '{split($0,a,"\"");print a[2]}')
         ki="${ji,,}"
+        cm1="yum"
 	if [ $ki = "amzn" ]
 	then
 	   echo "It is amazon AMI"
