@@ -38,9 +38,8 @@ array[runt]="https://github.com/rangapv/runtimes.git"
 
 arrayb=( ks meta k8s )
 
-gs=`which git`
+gs=`which git >>/dev/null 2>&1`
 gst="$?"
-echo "cm1 is $cm1"
 if [[ $gst -ne 0 ]]
 then
 	sudo $cm1 -y install git
