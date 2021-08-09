@@ -14,12 +14,14 @@ do
     mkdir ~/$k
  fi
  cd ~/$k
- `git rev-parse --is-inside-work-tree >>/dev/null 2>&1`
- if [[ ! ( "$?" -eq 0 ) ]]
+ top=`git rev-parse --show-toplevel >>/dev/null 2>&-`
+ cpwd="$PWD"
+ # `git rev-parse --is-inside-work-tree >>/dev/null 2>&1`
+ if [[ "$cpwd" != "$top"  ]]
  then
     `git init >>/dev/null 2>&1`
  fi
-  git pull -q "${array[$k]}" 
+  git pull -q "${array[$k]}"
 done
 }
 
