@@ -1,6 +1,6 @@
 #!/bin/bash
 set -E
-source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) 2>&1 > /dev/null
+source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
 
 declare -A array
 
@@ -40,7 +40,7 @@ arrayb=( ks meta k8s )
 
 gs=`which git`
 gst="$?"
-
+echo "cm1 is $cm1"
 if [[ $gst -ne 0 ]]
 then
 	sudo $cm1 -y install git
