@@ -20,11 +20,11 @@ do
  if [[ "$cpwd" != "$top"  ]]
  then
     `git init >>/dev/null 2>&1`
+    `git config --global user.name "rangapv";git config --global user.email rangapv@yahoo.com`
  fi
   git pull -q "${array[$k]}"
 done
 }
-
 
 array[ks]="https://github.com/rangapv/kubestatus.git"
 array[meta]="https://github.com/rangapv/metascript.git"
@@ -40,10 +40,13 @@ arrayb=( ks meta k8s )
 
 gs=`which git >>/dev/null 2>&1`
 gst="$?"
-if [[ $gst -ne 0 ]]
+if [[ ( $gst -ne 0 ) ]]
 then
 	sudo $cm1 -y install git
+        gst="$?"
 fi
-
-github "${arrayb[@]}"
+if [[ ( $gst -eq 0 ) ]]
+then
+       github "${arrayb[@]}"
+fi
 
