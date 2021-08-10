@@ -36,7 +36,7 @@ array[ans]="https://github.com/rangapv/ansible-install.git"
 array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
 
-arrayb=( ks meta k8s )
+
 
 gs=`which git >>/dev/null 2>&1`
 gst="$?"
@@ -47,6 +47,12 @@ then
 fi
 if [[ ( $gst -eq 0 ) ]]
 then
+       if [[ ( "$#" -eq 0 ) ]]
+       then
+       arrayb=( ks meta k8s )
        github "${arrayb[@]}"
+       else
+       github "$*"
+       fi
 fi
 
