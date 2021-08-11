@@ -65,12 +65,12 @@ array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
 array[temp]="nothing"
 
-if [[ "$*" = "-h" ]]
-then
+sethelp() {
+
 	echo "Usage: ./setup.sh ks meta ( For alias of repo defined in script )"
 	echo "       ./setup.sh        ( For default installs )"
 	echo "       ./setup.sh -h     ( For usage of this script ) "
-else
+}
 
 gs=`which git >>/dev/null 2>&1`
 gst="$?"
@@ -79,6 +79,16 @@ then
 	sudo $cm1 -y install git
         gst="$?"
 fi
+
+while getopts ":h" option; do
+   case $option in
+      h) # display Help
+         sethelp 
+         exit;;
+   esac
+done
+
+
 if [[ ( $gst -eq 0 ) ]]
 then
 echo "**************"
@@ -105,5 +115,4 @@ echo "**************"
  echo "Total failed git pulls are $fcount"
  fi
  fi
-fi
 fi
