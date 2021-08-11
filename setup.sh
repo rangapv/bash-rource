@@ -1,7 +1,6 @@
 #!/bin/bash
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
-
 declare -A array
 scount=0
 fcount=0
@@ -66,6 +65,12 @@ array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
 array[temp]="nothing"
 
+if [[ "$*" = "-h" ]]
+then
+	echo "Usage: ./setup.sh ks meta ( For alias of repo defined in script )"
+	echo "       ./setup.sh        ( For default installs )"
+	echo "       ./setup.sh -h     ( For usage of this script ) "
+else
 
 gs=`which git >>/dev/null 2>&1`
 gst="$?"
@@ -101,4 +106,4 @@ echo "**************"
  fi
  fi
 fi
-
+fi
