@@ -3,6 +3,8 @@ set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
 
 declare -A array
+scount=0
+fcount=0
 
 github() {
 arg1="$@"
@@ -26,10 +28,12 @@ do
   gitps="$?"
   if [[ $gitps -eq 0 ]]
   then
-	  echo "\"$k\" with the repo code is successfully placed in \"~/$k\""
+	  echo "\"$k\" with the repo ( ${array[$k]} ) code is successfully placed in \"~/$k\""
+          ((scount+=1))
   else
           rm -r ~/$k
-	  echo "\"$k\" failed ${gitp}"
+	  echo "\"$k\" with repo ref ( ${array[$k]} ) failed ${gitp}"
+          ((fcount+=1))
   fi
 done
 }
@@ -72,6 +76,9 @@ then
 fi
 if [[ ( $gst -eq 0 ) ]]
 then
+echo "**************"
+echo "git-statistics"
+echo "**************"
        if [[ ( "$#" -eq 0 ) ]]
        then
        arrayb=( ks meta k8s )
@@ -79,5 +86,19 @@ then
        else
          gitcheck "$*"
        fi
+ if [[ ( $scount -gt 0 ) || ( $fcount -gt 0 ) ]]
+ then
+     echo "***********"
+     echo "git-pull stats"
+     echo "***********"
+ if [[ ( $scount -gt 0 ) ]]
+ then
+ echo "Total successful git pulls are $scount"
+ fi
+ if [[ ( $fcount -gt 0 ) ]]
+ then
+ echo "Total failed git pulls are $fcount"
+ fi
+ fi
 fi
 
