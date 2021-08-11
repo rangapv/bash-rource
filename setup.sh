@@ -22,8 +22,33 @@ do
     `git init >>/dev/null 2>&1`
     `git config --global user.name "rangapv";git config --global user.email rangapv@yahoo.com`
  fi
-  git pull -q "${array[$k]}"
+  gitp=`git pull -q "${array[$k]}" >>/dev/null 2>&1`
+  gitps="$?"
+  if [[ $gitps -eq 0 ]]
+  then
+	  echo "\"$k\" with the repo code is successfully placed in \"~/$k\""
+  else
+          rm -r ~/$k
+	  echo "\"$k\" failed ${gitp}"
+  fi
 done
+}
+
+gitcheck() {
+arg2="$@"
+
+for l in ${arg2[@]}
+do
+	if [[ -z "${array[$l]}" ]]
+	then
+		echo "The entry $l does not have a git repo mapping"
+	else
+
+		github $l
+
+	fi
+done
+
 }
 
 array[ks]="https://github.com/rangapv/kubestatus.git"
@@ -35,7 +60,7 @@ array[py]="https://github.com/rangapv/pyUpgrade.git"
 array[ans]="https://github.com/rangapv/ansible-install.git"
 array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
-
+array[temp]="nothing"
 
 
 gs=`which git >>/dev/null 2>&1`
@@ -52,7 +77,7 @@ then
        arrayb=( ks meta k8s )
        github "${arrayb[@]}"
        else
-       github "$*"
+         gitcheck "$*"
        fi
 fi
 
