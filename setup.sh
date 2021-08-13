@@ -96,11 +96,9 @@ echo "git-statistics"
 echo "**************"
        if [[ ( "$#" -eq 0 ) ]]
        then
-       arrayb=( ks meta k8s )
-       github "${arrayb[@]}"
-       else
-         gitcheck "$*"
+       set -- "ks" "meta" "k8s"
        fi
+       gitcheck "$*"
  if [[ ( $scount -gt 0 ) || ( $fcount -gt 0 ) ]]
  then
      echo "***********"
