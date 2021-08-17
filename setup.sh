@@ -106,11 +106,11 @@ echo "**************"
      echo "***********"
  if [[ ( $scount -gt 0 ) ]]
  then
- echo "Total successful git pulls are $scount"
+ echo "Total $scount successful git pulls "
  fi
  if [[ ( $fcount -gt 0 ) ]]
  then
- echo "Total failed git pulls are $fcount"
+ echo "Total $fcount failed git pulls "
  fi
  fi
 fi
