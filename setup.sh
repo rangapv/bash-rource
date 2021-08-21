@@ -63,6 +63,7 @@ array[py]="https://github.com/rangapv/pyUpgrade.git"
 array[ans]="https://github.com/rangapv/ansible-install.git"
 array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
+array[sysc]="https://github.com/rangapv/system-check.git"
 array[temp]="nothing"
 
 sethelp() {
