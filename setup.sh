@@ -1,3 +1,4 @@
+  
 #!/bin/bash
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
@@ -71,6 +72,15 @@ sethelp() {
 	echo "Usage: ./setup.sh ks meta ( For alias of repo defined in script )"
 	echo "       ./setup.sh        ( For default installs )"
 	echo "       ./setup.sh -h     ( For usage of this script ) "
+	echo "Alias shorthand: ks (kubestatus)"
+	echo "                 meta (wrapper metascript for k8s cloud and cni agnostic)"
+	echo "                 sysc (system-check)"
+	echo "                 runt (Install runtimes)"
+	echo "                 ans  (Pure Python & ansible)"
+	echo "                 eBPF (eBPF starter kit)"
+	echo "                 bs   (bash source including this setup.sh)"
+	echo "                 k8s  (kubernetes install shell script inturn reffered by meta)"
+	echo "                 kube-mani (k8s manifest like statefulset, helloworld pod etc..)"
 }
 
 gs=`which git >>/dev/null 2>&1`
