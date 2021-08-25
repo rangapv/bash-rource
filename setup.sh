@@ -65,6 +65,7 @@ array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
 array[sysc]="https://github.com/rangapv/system-check.git"
 array[pydok]="https://github.com/rangapv/pydok.git"
+array[doker]="https://github.com/rangapv/doker.git"
 array[temp]="nothing"
 
 sethelp() {
