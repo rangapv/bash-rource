@@ -1,4 +1,3 @@
-  
 #!/bin/bash
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
@@ -65,6 +64,7 @@ array[ans]="https://github.com/rangapv/ansible-install.git"
 array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
 array[runt]="https://github.com/rangapv/runtimes.git"
 array[sysc]="https://github.com/rangapv/system-check.git"
+array[pydok]="https://github.com/rangapv/pydok.git"
 array[temp]="nothing"
 
 sethelp() {
@@ -81,6 +81,7 @@ sethelp() {
 	echo "                 bs   (bash source including this setup.sh)"
 	echo "                 k8s  (kubernetes install shell script inturn reffered by meta)"
 	echo "                 kube-mani (k8s manifest like statefulset, helloworld pod etc..)"
+        echo "                 pydok (Docker statistics in python with Decorators & argparse for CLI)"
 }
 
 gs=`which git >>/dev/null 2>&1`
