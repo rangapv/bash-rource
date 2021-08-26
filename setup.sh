@@ -109,8 +109,23 @@ editdesc() {
     else
 	    echo "The entry $c1 does not exisist in the database"
     fi
-
 }
+
+
+origin() {
+  echo "This is display the repo root origin so commits can be set to it "
+  echo ""
+  echo "Enter the alias for which the origin is needed"
+  read c3
+  if [[ ! -z "${array[$c3]}" ]]
+  then
+          echo "The origin for $c3 is ${array[$c3]}"
+  else
+          echo "The entry $c3 does not exisist in the database"
+  fi
+}
+
+
 
 gs=`which git >>/dev/null 2>&1`
 gst="$?"
@@ -120,7 +135,7 @@ then
         gst="$?"
 fi
 
-while getopts ":he" option; do
+while getopts ":heo" option; do
    case $option in
       h) # display Help
          sethelp 
@@ -129,6 +144,9 @@ while getopts ":he" option; do
          editdesc
 	 sethelp
          exit;;
+     o) # dispaly repo root
+	 origin
+         exit;;	 
    esac
 done
 
