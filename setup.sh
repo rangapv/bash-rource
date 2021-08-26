@@ -2,6 +2,7 @@
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
 declare -A array
+declare -A desc
 scount=0
 fcount=0
 
@@ -46,43 +47,69 @@ do
 	then
 		echo "The entry $l does not have a git repo mapping"
 	else
-
 		github $l
-
 	fi
 done
 
 }
 
 array[ks]="https://github.com/rangapv/kubestatus.git"
+: ${desc[ks]:="(kubestatus)"}
 array[meta]="https://github.com/rangapv/metascript.git"
+desc[meta]="(wrapper metascript for k8s cloud and cni agnostic)"
 array[k8s]="https://github.com/rangapv/k8s.git"
+desc[k8s]="(kubernetes install shell script inturn reffered by meta)"
 array[eBPF]="https://github.com/rangapv/eBPF.git"
+desc[eBPF]="(eBPF starter kit)"
 array[bs]="https://github.com/rangapv/bash-source.git"
+desc[bs]="(bash source including this setup.sh)"
 array[py]="https://github.com/rangapv/pyUpgrade.git"
+desc[py]="(Python Upgrade/Pure original program for new refer to ans)"
 array[ans]="https://github.com/rangapv/ansible-install.git"
+desc[ans]="(Pure Python & ansible)"
 array[kube-mani]="https://github.com/rangapv/Kube-Manifests.git"
+desc[kube-mani]="(k8s manifest like statefulset, helloworld pod etc..)"
 array[runt]="https://github.com/rangapv/runtimes.git"
+desc[runt]="(Install runtimes)"
 array[sysc]="https://github.com/rangapv/system-check.git"
+desc[sysc]="(system-check)"
 array[pydok]="https://github.com/rangapv/pydok.git"
+desc[pydok]="(Docker statistics in python with Decorators & argparse for CLI)"
 array[doker]="https://github.com/rangapv/doker.git"
+desc[doker]="(Install docker as an Universal platform)"
 array[temp]="nothing"
 
-sethelp() {
 
+sethelp() {
 	echo "Usage: ./setup.sh ks meta ( For alias of repo defined in script )"
 	echo "       ./setup.sh        ( For default installs )"
 	echo "       ./setup.sh -h     ( For usage of this script ) "
-	echo "Alias shorthand: ks (kubestatus)"
-	echo "                 meta (wrapper metascript for k8s cloud and cni agnostic)"
-	echo "                 sysc (system-check)"
-	echo "                 runt (Install runtimes)"
-	echo "                 ans  (Pure Python & ansible)"
-	echo "                 eBPF (eBPF starter kit)"
-	echo "                 bs   (bash source including this setup.sh)"
-	echo "                 k8s  (kubernetes install shell script inturn reffered by meta)"
-	echo "                 kube-mani (k8s manifest like statefulset, helloworld pod etc..)"
-        echo "                 pydok (Docker statistics in python with Decorators & argparse for CLI)"
+	echo " Alias for repos in the database"
+	arrlen=0
+        for j in "${!array[@]}"
+        do
+		if [[ ! -z ${desc[$j]} ]]
+		then
+	        echo "           $j :    ${desc[$j]}"
+		((arrlen+=1)) 
+           	fi
+        done 
+        echo ""
+        echo "Total Database has $arrlen repo details"
+        echo ""	
+}
+
+editdesc() {
+    echo "This is to edit the description for the repo alias to be dispalyed in the help option"
+    echo "enter alias description"
+    read c1 c2
+    if [[ ! -z "${array[$c1]}" ]]
+    then
+	    desc[{$c1}]="$c2"
+    else
+	    echo "The entry $c1 does not exisist in the database"
+    fi
+
 }
 
 gs=`which git >>/dev/null 2>&1`
@@ -93,10 +120,14 @@ then
         gst="$?"
 fi
 
-while getopts ":h" option; do
+while getopts ":he" option; do
    case $option in
       h) # display Help
          sethelp 
+         exit;;
+      e) # edit description
+         editdesc
+	 sethelp
          exit;;
    esac
 done
