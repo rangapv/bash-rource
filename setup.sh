@@ -81,10 +81,13 @@ array[temp]="nothing"
 
 
 sethelp() {
-	echo "Usage: ./setup.sh ks meta ( For alias of repo defined in script )"
-	echo "       ./setup.sh        ( For default installs )"
+	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
+	echo "       ./setup.sh        ( For default installs predefined inside this script )"
 	echo "       ./setup.sh -h     ( For usage of this script ) "
+        echo "       ./setup.sh -o     ( For the repos root origin display )"
+        echo "       ./setup.sh -d     ( Display all of the details of the Repo )"
 	echo " Alias for repos in the database"
+	echo ""
 	arrlen=0
         for j in "${!array[@]}"
         do
@@ -125,6 +128,15 @@ origin() {
   fi
 }
 
+dbs() {
+echo "ALIAS     :: Repo Origin  :: Description" 
+echo ""
+for d in "${!array[@]}"
+do
+	echo "$d    :: ${array[$d]}  ::  ${desc[$d]}"
+done
+echo ""
+}
 
 
 gs=`which git >>/dev/null 2>&1`
@@ -135,7 +147,7 @@ then
         gst="$?"
 fi
 
-while getopts ":heo" option; do
+while getopts ":heod" option; do
    case $option in
       h) # display Help
          sethelp 
@@ -147,6 +159,9 @@ while getopts ":heo" option; do
      o) # dispaly repo root
 	 origin
          exit;;	 
+     d) # display the complete database
+	 dbs
+	 exit;;
    esac
 done
 
