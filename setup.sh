@@ -78,7 +78,8 @@ desc[pydok]="(Docker statistics in python with Decorators & argparse for CLI)"
 array[doker]="https://github.com/rangapv/doker.git"
 desc[doker]="(Install docker as an Universal platform)"
 array[temp]="nothing"
-
+desc[ML]="(Machine learning code base)"
+array[ML]="https://github.com/rangapv/ML.git"
 
 sethelp() {
 	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
