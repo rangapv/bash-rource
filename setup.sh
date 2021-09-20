@@ -80,6 +80,8 @@ desc[doker]="(Install docker as an Universal platform)"
 array[temp]="nothing"
 desc[ML]="(Machine learning code base)"
 array[ML]="https://github.com/rangapv/ML.git"
+desc[goi]="(go package Install)"
+array[goi]="https://github.com/rangapv/goi.git"
 
 sethelp() {
 	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
