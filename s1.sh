@@ -1,5 +1,58 @@
 #!/bin/sh
 set -E
+
+#Function
+
+unam() {
+una=`uname -m`
+unas="$?"
+if [[ ( $unas -eq 0 ) ]]
+then
+	callcase
+else
+	echo "uname command is missing..Aborting"
+fi
+}
+
+callcase() {
+
+  case $una in
+     x86_64)
+	     ARCH="amd64"
+	     ;;
+     aarch64)
+             ARCH="arm64"
+	     ;;
+     *)
+            echo "Architecture cannot be determined"
+            ARCH="$una"
+	     ;;
+  esac
+
+}
+
+os () {
+os1=`uname -s`
+oss="$?"
+if [[ ( $oss -eq 0 ) ]]
+then
+	os2="${os1,,}"
+else
+	echo "OS command failed"
+fi
+
+}
+
+#Main Begins
+
+#Setting the Architecture
+
+unam
+os
+echo "ARCH is $ARCH, os is $os2"
+
+
+
 li=$(uname -s)
 
 if [ $(echo "$li" | grep Linux) ]
@@ -25,6 +78,9 @@ else
 fi
 
 count=0
+
+
+
 
 if [ ! -z "$u1" ]
 then 
