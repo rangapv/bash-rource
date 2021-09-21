@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -E
 
 #Function
@@ -6,7 +6,7 @@ set -E
 unam() {
 una=`uname -m`
 unas="$?"
-if [[ ( $unas -eq 0 ) ]]
+if [[  ( $unas -eq 0 )  ]]
 then
 	callcase
 else
@@ -49,8 +49,8 @@ fi
 
 unam
 os
-echo "ARCH is $ARCH, os is $os2"
 
+#echo "ARCH is $ARCH, os is $os2"
 
 
 li=$(uname -s)
