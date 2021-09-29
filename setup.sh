@@ -28,7 +28,8 @@ do
   if [[ $gitps -eq 0 ]]
   then
 	  echo "\"$k\" with the repo ( ${array[$k]} ) code is successfully placed in \"~/$k\""
-          ((scount+=1))
+          echo "The code description for this repo ${desc[$k]}"
+	  ((scount+=1))
   else
           rm -r ~/$k
 	  echo "\"$k\" with repo ref ( ${array[$k]} ) failed ${gitp}"
