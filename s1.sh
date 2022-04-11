@@ -17,10 +17,10 @@ fi
 callcase() {
 
   case $una in
-     x86_64)
+     amd64)
 	     ARCH="amd64"
 	     ;;
-     aarch64)
+     arm64)
              ARCH="arm64"
 	     ;;
      *)
@@ -34,9 +34,12 @@ callcase() {
 os () {
 os1=`uname -s`
 oss="$?"
-if [[ ( $oss -eq 0 ) ]]
+if [[ ( $oss -eq 0 ) && ( $una = "amd64" ) ]]
 then
 	os2="${os1,,}"
+elif [[ ( $oss -eq 0 ) && ( $una = "arm64" ) ]]
+then
+       os2="$os1"
 else
 	echo "OS command failed"
 fi
@@ -59,7 +62,7 @@ if [ $(echo "$li" | grep Linux) ]
 then
   mac=""
 else
-  mac=$(sw_vers | grep Mac)
+  mac=$(sw_vers | grep mac)
 fi
 
 
@@ -74,17 +77,13 @@ then
   d1=$(cat /etc/*-release | grep ID= | grep debian)
   fc1=$(cat /etc/*-release | grep ID= | grep flatcar)
 else 
-  echo "Mac is not empty"
+  echo "It's a Mac "
 fi
 
 count=0
 
-
-
-
 if [ ! -z "$u1" ]
 then 
-	mi2="${mi,,}"
 	ji=$(cat /etc/*-release | grep DISTRIB_ID | awk '{split($0,a,"=");print a[2]}')
 	ki="${ji,,}"
 
@@ -101,7 +100,6 @@ then
 	fi
 elif [ ! -z "$d1" ]
 then
-	mi2="${mi,,}"
 	ji=$(cat /etc/*-release | grep ^ID= | grep -v "\"" | awk '{split($0,a,"=");print a[2]}')
 	ki="${ji,,}"
 	if [ "$ki" = "debian" ]
