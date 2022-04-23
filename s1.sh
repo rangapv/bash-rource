@@ -172,3 +172,8 @@ then
 else
 	echo "The distribution cannot be determined"
 fi
+
+
+#echo "mac is $mac"
+#echo "os is $os2"
+#echo "ARCh is $ARCH"
