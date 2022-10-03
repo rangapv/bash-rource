@@ -146,7 +146,18 @@ echo "git-statistics"
 echo "**************"
        if [[ ( "$#" -eq 0 ) ]]
        then
-       set -- "ks" "meta" "k8s"
+          echo "No argument given for repos to be pulled"
+	  echo "The default repos that are programmed are kubestatus,metascript and k8s"
+	  echo "Do you want to proceed (y/n) ?"
+	  read imp
+	     if [ "$imp" = "y" ]
+	     then
+	       set -- "ks" "meta" "k8s"
+             else
+	       echo "Displaying Help/Databse of Repos"
+               sethelp
+	       exit
+	     fi
        fi
        gitcheck "$*"
  if [[ ( $scount -gt 0 ) || ( $fcount -gt 0 ) ]]
