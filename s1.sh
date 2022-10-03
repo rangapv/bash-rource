@@ -35,9 +35,6 @@ callcase() {
 os () {
 os1=`uname -s`
 oss="$?"
-echo "una is $una"
-echo "oss is $oss"
-echo "os1 is $os1"
 if [[ ( $oss -eq 0 ) && ( $una = "amd64" ) ]]
 then
 	os2="${os1,,}"
