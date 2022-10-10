@@ -89,4 +89,6 @@ desc[iChrome]="( Install iChrome on Unix systems)"
 array[iChrome]="https://github.com/rangapv/ichrome.git"
 desc[boto3]="( Python  boto 3 files needed to connect to the AWS cloud)"
 array[boto3]="https://github.com/rangapv/awsboto.git"
+desc[argoCD]="( Argo CD for k8s Cluster)"
+array[argoCD]="https://github.com/rangapv/argoCD.git"
 
