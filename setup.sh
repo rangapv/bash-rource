@@ -62,11 +62,20 @@ sethelp() {
 	echo " Alias for repos in the database"
 	echo ""
 	arrlen=0
-        for j in "${!array[@]}"
+        green='\033[0;32m'
+	cyan='\033[0;36m'
+	nc='\033[0m'
+	for j in "${!array[@]}"
         do
 		if [[ ! -z ${desc[$j]} ]]
 		then
-	        echo "           $j :    ${desc[$j]}"
+			if [ $((arrlen%2)) -eq 0 ]
+			then
+		    		fg=$green
+			else
+				fg=$cyan
+			fi
+	        echo -e "       ${fg}$j${nc} :    ${desc[$j]}"
 		((arrlen+=1)) 
            	fi
         done 
