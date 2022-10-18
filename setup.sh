@@ -65,7 +65,10 @@ sethelp() {
         green='\033[0;32m'
 	cyan='\033[0;36m'
 	nc='\033[0m'
-	for j in "${!array[@]}"
+	readarray -t MyArray < <(printf '%s\n' "${!array[@]}" | sort)
+        #echo "the sorted is ${MyArray[*]}"
+	for j in "${MyArray[@]}"
+	#for j in "${!array[@]}"
         do
 		if [[ ! -z ${desc[$j]} ]]
 		then
@@ -81,7 +84,7 @@ sethelp() {
         done 
         echo ""
         echo "Total Database has $arrlen repo details"
-        echo ""	
+	echo ""	
 }
 
 editdesc() {
