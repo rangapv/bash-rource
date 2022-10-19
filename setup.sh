@@ -4,6 +4,8 @@ source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.s
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/bashdb.sh) >>/dev/null 2>&1
 scount=0
 fcount=0
+dbsfunc=0
+setdeffunc=0
 
 github() {
 arg1="$@"
@@ -53,20 +55,15 @@ done
 
 }
 
-sethelp() {
-	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
-	echo "       ./setup.sh        ( For default installs predefined inside this script )"
-	echo "       ./setup.sh -h     ( For usage of this script ) "
-        echo "       ./setup.sh -o     ( For the repos root origin display )"
-        echo "       ./setup.sh -d     ( Display all of the details of the Repo )"
-	echo " Alias for repos in the database"
-	echo ""
+color() {
+
 	arrlen=0
         green='\033[0;32m'
 	cyan='\033[0;36m'
 	nc='\033[0m'
 	readarray -t MyArray < <(printf '%s\n' "${!array[@]}" | sort)
-        #echo "the sorted is ${MyArray[*]}"
+        #echo "myarray is ${MyArray[@]}"
+        #echo "myarray2 is ${!MyArray[@]}"
 	for j in "${MyArray[@]}"
 	#for j in "${!array[@]}"
         do
@@ -78,13 +75,34 @@ sethelp() {
 			else
 				fg=$cyan
 			fi
-	        echo -e "       ${fg}$j${nc} :    ${desc[$j]}"
+	                if [[ (( $dbsfunc -eq 1 )) ]]
+			then
+			echo -e "${fg}$j    :: ${array[$j]}${nc}  ::  ${desc[$j]}"
+	        	elif [[ (( $setdeffunc -eq 1)) ]]
+		        then
+			echo -e "       ${fg}$j${nc} :    ${desc[$j]}"
+		       	else
+		        echo ""
+			fi	     
 		((arrlen+=1)) 
            	fi
         done 
         echo ""
         echo "Total Database has $arrlen repo details"
 	echo ""	
+
+}
+
+sethelp() {
+	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
+	echo "       ./setup.sh        ( For default installs predefined inside this script )"
+	echo "       ./setup.sh -h     ( For usage of this script ) "
+        echo "       ./setup.sh -o     ( For the repos root origin display )"
+        echo "       ./setup.sh -d     ( Display all of the details of the Repo )"
+	echo " Alias for repos in the database"
+	echo ""
+	setdeffunc=1
+	color
 }
 
 editdesc() {
@@ -116,11 +134,8 @@ origin() {
 dbs() {
 echo "ALIAS     :: Repo Origin  :: Description" 
 echo ""
-for d in "${!array[@]}"
-do
-	echo "$d    :: ${array[$d]}  ::  ${desc[$d]}"
-done
-echo ""
+dbsfunc=1
+color
 }
 
 
