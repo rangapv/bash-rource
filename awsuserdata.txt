@@ -1,4 +1,16 @@
 #! /bin/sh
+filenf="/etc/needrestart/needrestart.conf"
+nrf1=`sudo cat $filenf | grep  "\$nrconf{restart} = 'a';"`
+nrf1s="$?"
+if [[ ( -z $nrf1 ) && (( $nrf1s -ne 0 )) ]]
+then
+linenf="\$nrfconf{restart}\ \=\ 'a';"
+linemat="\$nrconf{restart} = 'i'"
+sudo sed -i "/$linemat/a$linenf\n" $filenf
+else
+        echo ""
+fi
+
 f1="/etc/ssh/sshd_config"
 line20="\#PubkeyAuthentication\ yes"
 line2="PubkeyAuthentication\ yes"
