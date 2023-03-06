@@ -95,4 +95,7 @@ desc[boto3]="( Python  boto 3 files needed to connect to the AWS cloud)"
 array[boto3]="https://github.com/rangapv/awsboto.git"
 desc[argoCD]="( Argo CD for k8s Cluster)"
 array[argoCD]="https://github.com/rangapv/argoCD.git"
-
+desc[goworks]="( go Installs and projects)"
+array[goworks]="https://github.com/rangapv/goworks.git"
+desc[tf]="( Terraform installs and Projects)"
+array[tf]="https://github.com/rangapv/tf.git"
