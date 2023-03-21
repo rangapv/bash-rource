@@ -99,5 +99,8 @@ desc[goworks]="( go Installs and projects)"
 array[goworks]="https://github.com/rangapv/goworks.git"
 desc[tf]="( Terraform installs and Projects)"
 array[tf]="https://github.com/rangapv/tf.git"
+<<<<<<< HEAD
 desc[awscli]="( aws-cli utility scripts)"
 array[awscli]="https://github.com/rangapv/awscli.git"
+=======
+>>>>>>> refs/remotes/origin/main
