@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -E
 
 #Function
@@ -61,9 +61,10 @@ li=$(uname -s)
 
 if [ $(echo "$li" | grep Linux) ]
 then
-  mac=""
+  mac="0"
 else
   mac=$(sw_vers | grep mac)
+  mac="1"
 fi
 
 
@@ -79,6 +80,7 @@ then
   fc1=$(cat /etc/*-release | grep ID= | grep flatcar)
 else 
   echo "It's a Mac "
+  echo "mac is $mac"
 fi
 
 count=0
@@ -167,7 +169,7 @@ then
 	fi
 elif [ ! -z "$mac" ]
 then
-	echo "It is a Mac"
+	#echo "It is a Mac"
 	cm1="brew"
 	count=1
 else

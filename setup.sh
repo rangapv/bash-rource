@@ -1,12 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -E
-source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null 2>&1
+source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null >&1 
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/bashdb.sh) >>/dev/null 2>&1
 scount=0
 fcount=0
 dbsfunc=0
 setdeffunc=0
-
 github() {
 arg1="$@"
 
@@ -42,9 +41,11 @@ done
 
 gitcheck() {
 arg2="$@"
-
+#echo "arg2 is $arg2"
 for l in ${arg2[@]}
 do
+        #echo "l is $l"
+        #echo "array is ${array[$l]}"
 	if [[ -z "${array[$l]}" ]]
 	then
 		echo "The entry $l does not have a git repo mapping"
@@ -61,11 +62,24 @@ color() {
         green='\033[0;32m'
 	cyan='\033[0;36m'
 	nc='\033[0m'
-	readarray -t MyArray < <(printf '%s\n' "${!array[@]}" | sort)
-        #echo "myarray is ${MyArray[@]}"
-        #echo "myarray2 is ${!MyArray[@]}"
+        #echo "mac is $mac"
+        if [[ ( $mac -eq 0 ) ]]
+	then
+            echo "this is not a mac"
+        readarray -t MyArray < <(printf '%s\n' "${!array[@]}" | sort)
+ 	else
+        echo $0
+		for l in "${!array[@]}"
+		do
+  		newarr+=($l)
+		done
+
+		IFS=$'\n' sorted=($(sort <<<"${newarr[*]}"))
+  		#echo "length is ${#sorted[@]}"
+                MyArray=("${sorted[@]}")	
+ 	fi 
+
 	for j in "${MyArray[@]}"
-	#for j in "${!array[@]}"
         do
 		if [[ ! -z ${desc[$j]} ]]
 		then

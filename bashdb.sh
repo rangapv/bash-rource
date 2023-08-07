@@ -1,6 +1,3 @@
-#!/bin/bash
-set -E
-
 declare -A array
 declare -A desc
 
