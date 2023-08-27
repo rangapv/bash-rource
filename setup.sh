@@ -2,6 +2,7 @@
 set -E
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) >>/dev/null >&1 
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/bashdb.sh) >>/dev/null 2>&1
+source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/comp.sh) >>/dev/null 2>&1
 scount=0
 fcount=0
 dbsfunc=0
