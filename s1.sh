@@ -68,7 +68,7 @@ else
 fi
 
 
-if [[ "$mac" = "0" ]]
+if [[ "$mac" = 0 ]]
 then
   u1=$(cat /etc/*-release | grep ID= | grep ubuntu)
   f1=$(cat /etc/*-release | grep ID= | grep fedora)
