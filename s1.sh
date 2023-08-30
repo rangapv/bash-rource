@@ -61,14 +61,14 @@ li=$(uname -s)
 
 if [ $(echo "$li" | grep Linux) ]
 then
-  mac="0"
+  mac=""
 else
   mac=$(sw_vers | grep mac)
-  mac="1"
+  #mac="1"
 fi
 
 
-if [[ "$mac" = 0 ]]
+if [ -z $mac ]
 then
   u1=$(cat /etc/*-release | grep ID= | grep ubuntu)
   f1=$(cat /etc/*-release | grep ID= | grep fedora)
