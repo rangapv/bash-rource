@@ -1,6 +1,3 @@
-#!/bin/bash
-set -E
-
 declare -A array
 declare -A desc
 
@@ -101,3 +98,11 @@ desc[tf]="( Terraform installs and Projects)"
 array[tf]="https://github.com/rangapv/tf.git"
 desc[awscli]="( aws-cli utility scripts)"
 array[awscli]="https://github.com/rangapv/awscli.git"
+desc[rayapp]="( Ray Cluster isntalls)"
+array[rayapp]="https://github.com/rangapv/Rayapp.git"
+desc[ML]="(Machine Learning installs and apps )"
+array[ML]="https://github.com/rangapv/ML.git"
+desc[Ansible]="(Ansible roles and tasks along with AWS & GCP *.ini files )"
+array[Ansible]="https://github.com/rangapv/Ansible.git"
+desc[cncf]="( Cloud Native Apps for kubernetes Cluster like Helm,kasten,Prometheus etc )"
+array[cncf]="https://github.com/rangapv/CloudNative.git"
