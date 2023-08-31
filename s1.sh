@@ -98,6 +98,16 @@ then
 	sudo $cm1 -y upgrade
 	sudo $cm1 -y install git
 	count=1
+
+	pid1=`pidof /usr/bin/dpkg`
+ 	if [ ! -z "$pid1" ]
+ 	then
+ 	`sudo kill -9 $pid1`
+ 	`sudo rm -r /var/lib/dpkg/lock`
+ 	`sudo rm -r /var/lib/dpkg/lock-frontend`
+	# `sudo dpkg --configure -a`
+ 	fi
+	
 	fi
 elif [ ! -z "$d1" ]
 then
@@ -112,7 +122,17 @@ then
 	sudo $cm1 -y upgrade
 	sudo $cm1 -y install gcc make wget libffi-dev 
         count=1
-        fi
+
+	pid1=`pidof /usr/bin/dpkg`
+ 	if [ ! -z "$pid1" ]
+ 	then
+ 	`sudo kill -9 $pid1`
+ 	`sudo rm -r /var/lib/dpkg/lock`
+ 	`sudo rm -r /var/lib/dpkg/lock-frontend`
+	# `sudo dpkg --configure -a`
+ 	fi
+
+	fi
 
 elif [ ! -z "$f1" ]
 then
