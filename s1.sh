@@ -102,13 +102,10 @@ then
 	count=1
 
 	pid1=`pidof /usr/bin/dpkg`
- 	if [ ! -z "$pid1" ]
- 	then
  	`sudo kill -9 $pid1`
  	`sudo rm -r /var/lib/dpkg/lock`
  	`sudo rm -r /var/lib/dpkg/lock-frontend`
-	# `sudo dpkg --configure -a`
- 	fi
+	`sudo dpkg --configure -a`
 	
 	fi
 elif [ ! -z "$d1" ]
