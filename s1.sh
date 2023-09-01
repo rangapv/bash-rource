@@ -101,11 +101,19 @@ then
 	sudo $cm1 -y install git
 	count=1
 
+	while (true)
+	do
 	pid1=`pidof /usr/bin/dpkg`
- 	`sudo kill -9 $pid1`
- 	`sudo rm -r /var/lib/dpkg/lock`
- 	`sudo rm -r /var/lib/dpkg/lock-frontend`
+        if [ ! -z "$pid1" ]
+	then	
+	`sudo kill -9 $pid1`
+	#`sudo rm -r /var/lib/dpkg/lock`
+ 	#`sudo rm -r /var/lib/dpkg/lock-frontend`
+        else
 	`sudo dpkg --configure -a`
+	exit
+	fi
+	done	
 	
 	fi
 elif [ ! -z "$d1" ]
