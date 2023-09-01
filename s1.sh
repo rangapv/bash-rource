@@ -97,8 +97,21 @@ then
         cm11="add-apt-repository"
    	cm2="apt-key"
         sudo $cm1 -y update
+	while (true)
+        do
+        pid1=`pidof /usr/bin/dpkg`
+        if [ ! -z "$pid1" ]
+        then
+        `sudo kill -9 $pid1`
+        `sudo rm -r /var/lib/dpkg/lock`
+        `sudo rm -r /var/lib/dpkg/lock-frontend`
+        else
+        `sudo dpkg --configure -a`
+        exit
+        fi
+        done
+
 	sudo $cm1 -y upgrade
-	sudo $cm1 -y install git
 	count=1
 
 	while (true)
@@ -107,13 +120,14 @@ then
         if [ ! -z "$pid1" ]
 	then	
 	`sudo kill -9 $pid1`
-	#`sudo rm -r /var/lib/dpkg/lock`
- 	#`sudo rm -r /var/lib/dpkg/lock-frontend`
+	`sudo rm -r /var/lib/dpkg/lock`
+ 	`sudo rm -r /var/lib/dpkg/lock-frontend`
         else
 	`sudo dpkg --configure -a`
 	exit
 	fi
 	done	
+	sudo $cm1 -y install git
 	
 	fi
 elif [ ! -z "$d1" ]
