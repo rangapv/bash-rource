@@ -107,7 +107,7 @@ then
         `sudo rm -r /var/lib/dpkg/lock-frontend`
         else
         `sudo dpkg --configure -a`
-        exit
+         break 
         fi
         done
 
@@ -124,7 +124,7 @@ then
  	`sudo rm -r /var/lib/dpkg/lock-frontend`
         else
 	`sudo dpkg --configure -a`
-	exit
+	 break
 	fi
 	done	
 	sudo $cm1 -y install git
