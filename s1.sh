@@ -32,7 +32,7 @@ callcase() {
 
 }
 
-os () {
+oss() {
 os1=`uname -s`
 oss="$?"
 if [[ ( $oss -eq 0 ) && ( $una = "amd64" ) ]]
@@ -52,7 +52,7 @@ fi
 #Setting the Architecture
 
 unam
-os
+oss
 
 #echo "ARCH is $ARCH, os is $os2"
 
@@ -176,5 +176,6 @@ fi
 
 
 #echo "mac is $mac"
-#echo "os is $os2"
+os="os2"
+#echo "os is $os"
 #echo "ARCh is $ARCH"
