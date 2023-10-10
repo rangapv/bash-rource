@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -E
 
 #Function
@@ -64,10 +64,11 @@ then
   mac=""
 else
   mac=$(sw_vers | grep mac)
+  #mac="1"
 fi
 
 
-if [ -z "$mac" ]
+if [ -z $mac ]
 then
   u1=$(cat /etc/*-release | grep ID= | grep ubuntu)
   f1=$(cat /etc/*-release | grep ID= | grep fedora)
@@ -79,6 +80,7 @@ then
   fc1=$(cat /etc/*-release | grep ID= | grep flatcar)
 else 
   echo "It's a Mac "
+  echo "mac is $mac"
 fi
 
 count=0
@@ -95,9 +97,38 @@ then
         cm11="add-apt-repository"
    	cm2="apt-key"
         sudo $cm1 -y update
+	while (true)
+        do
+        pid1=`pidof /usr/bin/dpkg`
+        if [ ! -z "$pid1" ]
+        then
+        `sudo kill -9 $pid1`
+        `sudo rm -r /var/lib/dpkg/lock`
+        `sudo rm -r /var/lib/dpkg/lock-frontend`
+        else
+        `sudo dpkg --configure -a`
+         break 
+        fi
+        done
+
 	sudo $cm1 -y upgrade
-	sudo $cm1 -y install git
 	count=1
+
+	while (true)
+	do
+	pid1=`pidof /usr/bin/dpkg`
+        if [ ! -z "$pid1" ]
+	then	
+	`sudo kill -9 $pid1`
+	`sudo rm -r /var/lib/dpkg/lock`
+ 	`sudo rm -r /var/lib/dpkg/lock-frontend`
+        else
+	`sudo dpkg --configure -a`
+	 break
+	fi
+	done	
+	sudo $cm1 -y install git
+	
 	fi
 elif [ ! -z "$d1" ]
 then
@@ -112,7 +143,17 @@ then
 	sudo $cm1 -y upgrade
 	sudo $cm1 -y install gcc make wget libffi-dev 
         count=1
-        fi
+
+	pid1=`pidof /usr/bin/dpkg`
+ 	if [ ! -z "$pid1" ]
+ 	then
+ 	`sudo kill -9 $pid1`
+ 	`sudo rm -r /var/lib/dpkg/lock`
+ 	`sudo rm -r /var/lib/dpkg/lock-frontend`
+	# `sudo dpkg --configure -a`
+ 	fi
+
+	fi
 
 elif [ ! -z "$f1" ]
 then
@@ -167,7 +208,7 @@ then
 	fi
 elif [ ! -z "$mac" ]
 then
-	echo "It is a Mac"
+	#echo "It is a Mac"
 	cm1="brew"
 	count=1
 else

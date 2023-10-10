@@ -1,6 +1,3 @@
-#!/bin/bash
-set -E
-
 declare -A array
 declare -A desc
 
@@ -10,6 +7,8 @@ array[meta]="https://github.com/rangapv/metascript.git"
 desc[meta]="(wrapper metascript for k8s cloud and cni agnostic)"
 array[Simplek8s]="https://github.com/rangapv/Simplek8s.git"
 desc[Simplek8s]="(Quick kubernetes install shell script)"
+array[certs]="https://github.com/rangapv/certs.git"
+desc[certs]="(ClusterIssuer,Issuer,Ingress YAML for both http & dns challenge)"
 array[k8s]="https://github.com/rangapv/k8s.git"
 desc[k8s]="(kubernetes install shell script inturn reffered by meta)"
 array[eBPF]="https://github.com/rangapv/eBPF.git"
@@ -93,4 +92,17 @@ desc[boto3]="( Python  boto 3 files needed to connect to the AWS cloud)"
 array[boto3]="https://github.com/rangapv/awsboto.git"
 desc[argoCD]="( Argo CD for k8s Cluster)"
 array[argoCD]="https://github.com/rangapv/argoCD.git"
-
+desc[goworks]="( go Installs and projects)"
+array[goworks]="https://github.com/rangapv/goworks.git"
+desc[tf]="( Terraform installs and Projects)"
+array[tf]="https://github.com/rangapv/tf.git"
+desc[awscli]="( aws-cli utility scripts)"
+array[awscli]="https://github.com/rangapv/awscli.git"
+desc[rayapp]="( Ray Cluster isntalls)"
+array[rayapp]="https://github.com/rangapv/Rayapp.git"
+desc[ML]="(Machine Learning installs and apps )"
+array[ML]="https://github.com/rangapv/ML.git"
+desc[Ansible]="(Ansible roles and tasks along with AWS & GCP *.ini files )"
+array[Ansible]="https://github.com/rangapv/Ansible.git"
+desc[cncf]="( Cloud Native Apps for kubernetes Cluster like Helm,kasten,Prometheus etc )"
+array[cncf]="https://github.com/rangapv/CloudNative.git"
