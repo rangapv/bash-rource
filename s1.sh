@@ -217,6 +217,6 @@ fi
 
 
 #echo "mac is $mac"
-os="os2"
+os="$os2"
 #echo "os is $os"
 #echo "ARCh is $ARCH"
