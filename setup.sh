@@ -112,7 +112,7 @@ sethelp() {
 	echo "Usage: ./setup.sh ks meta ( For alias of repos [ks and meta in this case] defined in script )"
 	echo "       ./setup.sh        ( For default installs predefined inside this script )"
 	echo "       ./setup.sh -h     ( For usage of this script ) "
-        echo "       ./setup.sh -o     ( For the repos root origin display )"
+        echo "       ./setup.sh -o     ( For the repos root origin display and also the Description)"
         echo "       ./setup.sh -d     ( Display all of the details of the Repo )"
 	echo " Alias for repos in the database"
 	echo ""
@@ -141,6 +141,7 @@ origin() {
   if [[ ! -z "${array[$c3]}" ]]
   then
           echo "The origin for $c3 is ${array[$c3]}"
+          echo "The description of this repo is ${desc[$c3]}"
   else
           echo "The entry $c3 does not exisist in the database"
   fi
