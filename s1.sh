@@ -24,6 +24,7 @@ callcase() {
 	     ;;
      arm64)
              ARCH="arm64"
+	     una="arm64"
 	     ;;
      *)
             echo "Architecture cannot be determined"
@@ -85,7 +86,7 @@ else
 fi
 
 count=0
-
+irelease=`cat /etc/*-release | grep DISTRIB_RELEASE | awk '{split($0,a,"=");print a[2]}' |  awk '{split($0,a,".");print a[1]a[2]}'`
 if [ ! -z "$u1" ]
 then 
 	ji=$(cat /etc/*-release | grep DISTRIB_ID | awk '{split($0,a,"=");print a[2]}')
