@@ -19,7 +19,8 @@ callcase() {
   case $una in
      amd64|x86_64)
 	     ARCH="amd64"
-	     una="amd64"
+	     una="x86_64"
+	     #una="amd64"
 	     ;;
      arm64)
              ARCH="arm64"
